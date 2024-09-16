@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "./components/Header/Header";
 import { Analytics } from "@vercel/analytics/react"
 import Script from 'next/script';
-import { ClerkProvider } from "@clerk/nextjs";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider >
+    
     <html lang="en">
     
       <Script id="hotjar-script" strategy="afterInteractive">
@@ -34,10 +33,9 @@ export default function RootLayout({ children }) {
         <div className="">
           <Header />
           {children}
-          <Analytics />
         </div>
       </body>
     </html>
-    </ClerkProvider>
+
   );
 }
