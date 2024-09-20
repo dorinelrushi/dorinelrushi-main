@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/Header";
-
+import { Analytics } from "@vercel/analytics/react";
 import Script from 'next/script';
 
 
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
         <div className="">
           <Header />
           {children}
-         
+          <Analytics />
         </div>
       </body>
     </html>
