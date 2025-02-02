@@ -33,7 +33,7 @@ function Header() {
     >
       <div className="flex justify-between py-[20px] w-[80%] m-auto">
         <div>
-          <Link href='/'>Dorinel Rushi</Link>
+          <Link href='/'>Smart Innovation</Link>
         </div>
         <div onClick={toggleMenu} className="cursor-pointer">
           {menuVisible ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -68,9 +68,6 @@ function Header() {
             </li>
             <li className="mb-2">
               <a href="/#services">Services</a>
-            </li>
-            <li className="mb-2">
-              <a href="/FillTheForm">Fill the form</a>
             </li>
             <li className="mb-2">
               <a href="/#contact">Contact</a>
