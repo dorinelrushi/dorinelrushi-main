@@ -13,11 +13,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
+
+     
         {/* Google tag (gtag.js) */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-648F50051B" strategy="afterInteractive" />
         <Script
@@ -32,7 +29,7 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-      </head>
+  
       <body className={inter.className}>
         <Header />
         {children}
