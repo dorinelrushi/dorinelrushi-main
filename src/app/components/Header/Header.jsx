@@ -67,7 +67,7 @@ function Header() {
               <a href="/About">About</a>
             </li>
             <li className="mb-2">
-              <a href="/#services">Services</a>
+              <a href="/Services">Services</a>
             </li>
             <li className="mb-2">
               <a href="/#contact">Contact</a>

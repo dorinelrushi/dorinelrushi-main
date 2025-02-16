@@ -4,7 +4,7 @@ import { FaInstagram, FaBehance, FaDribbble } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0c0c0c] text-white py-17 relative mt-[25px]">
+    <footer className="bg-[#0c0c0c] text-white py-[50px] relative mt-[50px]">
          <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
         {/* Column 1: Logo, Email, and Mobile Number */}
         <div className="relative ">
@@ -40,7 +40,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#services"
+                href="/#services"
                 className="hover:text-gray-300 transition duration-300 mb-2 block"
               >
            Social cover / Posts
@@ -50,7 +50,7 @@ const Footer = () => {
                 
           <li>
               <a
-                href="#services"
+                href="/#services"
                 className="hover:text-gray-300 transition duration-300 mb-2 block"
               >
                 Business card
@@ -66,7 +66,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#services"
+                href="/#services"
                 className="hover:text-gray-300 transition duration-300 mb-2 block"
               >
                 Website Design
@@ -74,7 +74,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#services"
+                href="/#services"
                 className="hover:text-gray-300 transition duration-300 mb-2 block"
               >
                 Website Development
@@ -105,7 +105,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#services"
+                href="/services"
                 className="hover:text-gray-300 transition duration-300 mb-2 block"
               >
                 Services

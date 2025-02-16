@@ -1,52 +1,43 @@
-import fetchGraphQL from "@/lib/fetchPosts";
-import Link from "next/link";
+'use client'
+import { fetchGraphQL } from "@/app/lib/apollo-client";  
 
-export default async function Blog() {
-  const query = `
-    query GetPosts {
-      posts {
-        nodes {
-          title
-          slug
-          excerpt
-          date
-          author {
-            node {
-              name
+
+export async function getServerSideProps({ params }) {
+    const query = `
+        query GetPostBySlug($slug: String!) {
+            postBy(slug: $slug) {
+                title
+                content
+                featuredImage {
+                    node {
+                        sourceUrl
+                    }
+                }
             }
-          }
         }
-      }
+    `;
+    const variables = { slug: params.slug };
+    const data = await fetchGraphQL(query, variables);
+
+    if (!data || !data.postBy) {
+        return { notFound: true };
     }
-  `;
 
-  const data = await fetchGraphQL(query);
-  console.log("✅ API Response:", data); // Printo përgjigjen për debugging
+    return {
+        props: { post: data.postBy },
+    };
+}
 
-  // Kontrollo nëse `data` është undefined
-  if (!data || !data.posts || !data.posts.nodes) {
-    return <p>❌ Gabim: Nuk mund të lexohen blogjet.</p>;
-  }
-
-  return (
-    <div>
-      <h1>Blog Posts</h1>
-      {data.posts.nodes.length === 0 ? (
-        <p>Nuk ka postime.</p>
-      ) : (
-        data.posts.nodes.map((post) => (
-          <div key={post.slug} className="border-b pb-4 mb-4">
-            <h2>
-              <Link href={`/blog/${post.slug}`} className="text-blue-600 hover:underline">
-                {post.title}
-              </Link>
-            </h2>
-            <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-            <p><strong>Author:</strong> {post.author.node.name}</p>
-            <p><strong>Date:</strong> {new Date(post.date).toLocaleDateString()}</p>
-          </div>
-        ))
-      )}
-    </div>
-  );
+export default function BlogPost({ post }) {
+    return (
+        <div>
+            <h1>{post.title}</h1>
+            {post.featuredImage?.node?.sourceUrl ? (
+                <img src={post.featuredImage.node.sourceUrl} alt={post.title} width="800" />
+            ) : (
+                <img src="/default-image.jpg" alt="Default Image" width="800" />
+            )}
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        </div>
+    );
 }

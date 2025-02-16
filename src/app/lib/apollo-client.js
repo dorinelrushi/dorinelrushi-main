@@ -1,41 +1,21 @@
+// apollo-client.js
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+
+const client = new ApolloClient({
+    uri: "/api/graphql", // Tani përdor proxy në vend të GraphQL direkt
+    cache: new InMemoryCache(),
+});
+
 const fetchGraphQL = async (query, variables = {}) => {
-    const username = process.env.NEXT_PUBLIC_WP_USERNAME;
-    const password = process.env.NEXT_PUBLIC_WP_PASSWORD;
-    const apiUrl = process.env.NEXT_PUBLIC_WP_API_URL;
-  
-    if (!username || !password || !apiUrl) {
-        console.error("❌ ERROR: Missing environment variables.");
-        return null;
-    }
-  
     try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Basic " + btoa(username + ":" + password),
-        },
-        body: JSON.stringify({ query, variables }),
-      });
-  
-      if (!response.ok) {
-        console.error("❌ ERROR: API request failed with status", response.status);
-        return null;
-      }
-  
-      const text = await response.text();
-      console.log("✅ SERVER RESPONSE:", text);
-  
-      if (text.startsWith("<!DOCTYPE html>")) {
-        console.error("❌ ERROR: Server returned an HTML page instead of JSON.");
-        return null;
-      }
-  
-      return JSON.parse(text);
+        console.log("🔄 Duke bërë kërkesë në GraphQL me query:", query);
+        const { data } = await client.query({ query: gql(query), variables });
+        console.log("✅ Përgjigja nga serveri:", data);
+        return data;
     } catch (error) {
-      console.error("❌ ERROR: Network or JSON Parsing Issue", error);
-      return null;
+        console.error("❌ GraphQL Request Failed:", error);
+        return null;
     }
-  };
-  
-export default fetchGraphQL;
+};
+
+export { client, fetchGraphQL };

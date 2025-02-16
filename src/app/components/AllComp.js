@@ -17,7 +17,7 @@ export default function AllComp() {
       <Testimonials />
       <Gumroad />
       <Contact />
-      <Footer />
+
     </main>
   );
 }
