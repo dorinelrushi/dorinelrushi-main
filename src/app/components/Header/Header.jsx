@@ -70,6 +70,9 @@ function Header() {
               <a href="/Services">Services</a>
             </li>
             <li className="mb-2">
+              <a href="/HowWorks">How it works</a>
+            </li>
+            <li className="mb-2">
               <a href="/#contact">Contact</a>
             </li>
           </ul>
